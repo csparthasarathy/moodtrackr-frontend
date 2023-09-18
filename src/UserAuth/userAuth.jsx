@@ -41,32 +41,57 @@ const UserAuth = () => {
     }
 
     const onSignup = async () => {
-        const response = await axios({ method: 'post', url: SIGNUP_URL, data: { username: userName, password: passWord } });
-        if (response && response.status === 200) {
-            toast.success("Registered Succesfully")
-            setJustifyActive('tab1');
+        try {
+            const response = await axios({ method: 'post', url: SIGNUP_URL, data: { username: userName, password: passWord } });
+            if (response && response.status === 200) {
+                toast.success("Registered Succesfully")
+                setJustifyActive('tab1');
 
+            }
         }
-        else {
-            toast.error(response.message || response.error)
+
+        catch (error) {
+            if (error.response) {
+                toast.error(error.response.data.message);
+            } else if (error.request) {
+                toast.error('No response received from the server');
+            } else {
+                toast.error('Error: ' + error.message);
+            }
+
         }
         setbtnDisabled(false)
         setUserName('');
         setPassword('');
-        
+
     }
     const onSignIn = async () => {
-        const response = await axios({ method: 'post', url: SIGNIN_URL, data: { username: userName, password: passWord } });
-        if (response && response.status === 200) {
-            const token = response.data.token;
-            toast.success("LogIn successful")
-            localStorage.setItem("token", token)
+        try {
+            const response = await axios({
+                method: 'post',
+                url: SIGNIN_URL,
+                data: { username: userName, password: passWord }
+            });
+
+            if (response && response.status === 200) {
+                const token = response.data.token;
+                toast.success('LogIn successful');
+                localStorage.setItem('token', token);
+
+            }
+        } catch (error) {
+            if (error.response) {
+                toast.error(error.response.data.message);
+            } else if (error.request) {
+                toast.error('No response received from the server');
+            } else {
+                toast.error('Error: ' + error.message);
+            }
+            setUserName('');
+            setPassword('');
         }
-        else {
-            toast.error(response.message || response.error)
-        }
-        
         setbtnDisabled(false)
+
     }
     return (
         <div className='bg-color'>
