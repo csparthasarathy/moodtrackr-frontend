@@ -4,7 +4,6 @@ import {
     MDBContainer,
     MDBCol,
     MDBRow,
-    MDBBtn,
     MDBInput,
     MDBTabs,
     MDBTabsItem,
@@ -15,6 +14,7 @@ import {
 import logo from '../Images/logo.svg';
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { useHistory } from 'react-router-dom'
 import { SIGNIN_URL, SIGNUP_URL } from '../URLconstants';
 
 const UserAuth = () => {
@@ -22,6 +22,8 @@ const UserAuth = () => {
     const [btndisabled, setbtnDisabled] = useState(false)
     const [userName, setUserName] = useState('');
     const [passWord, setPassword] = useState('');
+
+    const history = useHistory();
 
     const handleJustifyClick = (value) => {
         if (value === justifyActive) {
@@ -41,6 +43,7 @@ const UserAuth = () => {
     }
 
     const onSignup = async () => {
+        setbtnDisabled(true)
         try {
             const response = await axios({ method: 'post', url: SIGNUP_URL, data: { username: userName, password: passWord } });
             if (response && response.status === 200) {
@@ -66,6 +69,7 @@ const UserAuth = () => {
 
     }
     const onSignIn = async () => {
+        setbtnDisabled(true)
         try {
             const response = await axios({
                 method: 'post',
@@ -75,6 +79,7 @@ const UserAuth = () => {
 
             if (response && response.status === 200) {
                 const token = response.data.token;
+                history.push('/questions');
                 toast.success('LogIn successful');
                 localStorage.setItem('token', token);
 
@@ -125,8 +130,7 @@ const UserAuth = () => {
                                     <MDBInput wrapperClass='mb-4' type='text' placeholder="username" onChange={(e) => onChangeText(e, 'username')} />
                                     <p className='margin-bottom2'>Password</p>
                                     <MDBInput wrapperClass='mb-4' type='password' placeholder="password" onChange={(e) => onChangeText(e, 'password')} />
-
-                                    <MDBBtn className="mb-4 w-100 bg-color-cus" onClick={() => onSignIn()} disabled={btndisabled}>Sign in</MDBBtn>
+                                    <button className='btn-sign' onClick={() => {onSignIn()}}disabled={btndisabled}>Sign In</button>
                                     <p className="text-center">Not a member? <a href="#!" onClick={() => handleJustifyClick('tab2')} active={justifyActive === 'tab2'}>Register</a></p>
 
                                 </MDBTabsPane>
@@ -136,8 +140,7 @@ const UserAuth = () => {
                                     <MDBInput wrapperClass='mb-4' type='text' onChange={(e) => onChangeText(e, 'username')} value={userName} />
                                     <p className='margin-bottom2'>Password</p>
                                     <MDBInput wrapperClass='mb-4' type='password' onChange={(e) => onChangeText(e, 'password')} value={passWord} />
-
-                                    <MDBBtn className="mb-4 w-100 bg-color-cus" onClick={() => onSignup()} disabled={btndisabled}>Sign up</MDBBtn>
+                                    <button className='btn-sign' onClick={() => onSignup()} disabled={btndisabled}>Sign Up</button>
 
                                 </MDBTabsPane>
 
