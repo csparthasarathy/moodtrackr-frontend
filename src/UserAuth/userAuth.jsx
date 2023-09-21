@@ -109,7 +109,7 @@ const UserAuth = () => {
                     <MDBCol col='4' md='6'>
                         <div className='vertical-center border-style'>
                             <div className='d-flex flex-row'><img src={logo} alt="logo" className="" />
-                                <p className='logo-header'>SenereMindz</p>
+                                <p className='logo-header'>SereneMindz</p>
                             </div>
                             <MDBTabs pills justify className='mb-3 d-flex flex-row justify-content-between'>
                                 <MDBTabsItem>

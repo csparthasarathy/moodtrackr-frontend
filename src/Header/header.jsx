@@ -26,7 +26,7 @@ const Header = () => {
                             alt="MDB Logo"
                             loading="lazy"
                         />
-                        <p className='header-title'>SenereMindz</p>
+                        <p className='header-title'>SereneMindz</p>
 
                 </div>
                 <div class="d-flex align-items-center">
