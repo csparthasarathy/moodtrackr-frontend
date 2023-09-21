@@ -23,7 +23,7 @@ const Questions = () => {
     let [totalQues, setTotalQues] = useState()
     const [basicModal, setBasicModal] = useState(false);
 
-    const OPTIONS = [0, 1, 2, 3, 4];
+    const OPTIONS = [1, 2, 3, 4];
     const history = useHistory();
 
     useEffect(() => {
