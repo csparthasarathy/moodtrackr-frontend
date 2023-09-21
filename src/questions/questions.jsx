@@ -158,7 +158,7 @@ const Questions = () => {
         <>
             <Header />
             <div className='align-items-center'>
-                <p className='logo-header mt-4' style={{ fontSize: '40px' }}>Mental Well-being Survey</p>
+                <p className='logo-header mt-4' style={{ fontSize: '40px' }}>Mental Well-being Questionnaire</p>
             </div>
             {onloadQuestions()}
             <MDBModal show={basicModal} setShow={setBasicModal} tabIndex='-1' >
