@@ -82,6 +82,7 @@ const UserAuth = () => {
                 history.push('/questions');
                 toast.success('LogIn successful');
                 localStorage.setItem('token', token);
+                localStorage.setItem('user',userName);
 
             }
         } catch (error) {

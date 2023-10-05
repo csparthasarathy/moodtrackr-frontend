@@ -12,10 +12,12 @@ import {
     MDBModalTitle,
     MDBModalBody,
   } from 'mdb-react-ui-kit';
-import { GETQUESTIONNAIRE, PREDICTMOOD, SUBMITANSWERS } from '../URLconstants';
+import { GETQUESTIONNAIRE,SUBMITANSWERS } from '../URLconstants';
 import toast from 'react-hot-toast';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
-
+const user=localStorage.getItem('user')
+let PREDICTMOOD=`https://serenemindz-moodprediction.streamlit.app/?embedded=true&user=${user}`
+//let PREDICTMOOD=`http://localhost:8501/?embedded=true&user=${user}`
 
 const Questions = () => {
     let [qAnswers, setQAnswers] = useState([{}])
